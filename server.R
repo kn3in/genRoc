@@ -1,9 +1,5 @@
 library(shiny)
 
-
-
-
-
 shinyServer(function(input, output) {
   
   sliderValues <- reactive(function() {
