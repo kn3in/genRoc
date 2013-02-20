@@ -6,11 +6,12 @@ shinyUI(pageWithSidebar(
       sliderInput("k", "Disease Prevalence:", 
                       min=0, max=1, value=0.5),
       numericInput("lambda_s", "Sibling recurrence (risk):", .1),
-      sliderInput("h_sqrt", "Heritability of liability:", 
+      sliderInput("h_2_l", "Heritability of liability:", 
                       min=0,   max=1, value=0.5),
       sliderInput("est_auc", "Estimated AUC:", 
                       min=0.5, max=1, value=0.75)
   ),
 
-  mainPanel(verbatimTextOutput("summary"))
+  mainPanel(tableOutput("values"),
+            tableOutput("results"))
 ))
