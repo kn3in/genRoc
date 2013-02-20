@@ -4,7 +4,7 @@ shinyUI(pageWithSidebar(
   headerPanel("GENROC"),
   sidebarPanel(
       sliderInput("k", "Disease Prevalence:", 
-                      min=0, max=1, value=0.5),
+                      min=0, max=1, value=0.05),
       numericInput("lambda_s", "Sibling recurrence (risk):", 2, min=1),
       sliderInput("h_2_l", "Heritability of liability:", 
                       min=0,   max=1, value=0.5),
