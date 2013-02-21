@@ -50,7 +50,7 @@ shinyServer(function(input, output) {
    risk_expl <- (lambda_s_x - 1) / (lambda_s - 1)
    #----------------------------------------
    
-   data.frame(
+   results <- data.frame(
      Parameter = c("AUCmax",
                    "AUChalf",
                    "AUCquarter",
@@ -59,14 +59,17 @@ shinyServer(function(input, output) {
                    "Rho_gg",
                    "Lambda_sx",
                    "Prop_risk_expl"),
-     Value = as.character(c(auc_max,
-                            auc.5,
-                            auc.25,
-                            auc_fh2parent,
-                            h_2_x,
-                            rho_ghat_g,
-                            lambda_s_x,
-                            risk_expl)))
+     Value = c(auc_max,
+               auc.5,
+               auc.25,
+               auc_fh2parent,
+               h_2_x,
+               rho_ghat_g,
+               lambda_s_x,
+               risk_expl))
+               
+  results$Value <- as.character(round(results$Value, 2))
+  results
 })
 
 
