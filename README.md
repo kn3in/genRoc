@@ -4,8 +4,9 @@ genRoc
 The genetic interpretation of area under the ROC curve in genomic profiling
 
 Shiny based implementation of the original [GENROC](http://gump.qimr.edu.au/genroc/)
+[Hosted at RStudio](http://glimmer.rstudio.com/kn3in/genRoc/)
 
-Run:
+or run your machine:
 ```R
 install.packages('shiny')
 library(shiny)
