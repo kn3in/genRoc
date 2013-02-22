@@ -1,5 +1,5 @@
 library(shiny)
-source("./functions.R")
+source("functions.R", local=TRUE)
 
 shinyServer(function(input, output) {
   sliderValues <- reactive(function() {
