@@ -7,7 +7,7 @@ Shiny based implementation of the original [GENROC](http://gump.qimr.edu.au/genr
 
 [Hosted at RStudio](http://glimmer.rstudio.com/kn3in/genRoc/)
 
-or run your machine:
+or run on your machine:
 ```R
 install.packages('shiny')
 library(shiny)
