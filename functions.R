@@ -1,12 +1,15 @@
 final_results <-  function(k, lambda_s, h_2_l, est_auc) {
- # if (missing(h_2_l)) {
+ 
  T0 <- qnorm(1 - k)
- T1 <- qnorm(1 - lambda_s * k)
  z  <- dnorm(T0)
  i  <- z / k
- h_2_l <- 2 * (T0 - T1 * sqrt(1 - (T0^2 - T1^2) * (1 - T0 / i))) / (i + T1^2 * (i - T0)) # eq 1
- # } else {
  
+ if (is.na(h_2_l)) {
+
+ T1 <- qnorm(1 - lambda_s * k)
+ h_2_l <- 2 * (T0 - T1 * sqrt(1 - (T0^2 - T1^2) * (1 - T0 / i))) / (i + T1^2 * (i - T0)) # eq 1
+
+}
  
  v  <- -i * (k / (1-k))
 
