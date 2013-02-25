@@ -27,8 +27,14 @@ shinyUI(pageWithSidebar(
         sliderInput("est_auc", "Estimated AUC:", 
                       min=0.5, max=1, value=0.75))),
 
-  mainPanel(h4("Input"),
+  mainPanel(
+    tabsetPanel(
+      tabPanel("Main",
+            h4("Input"),
             tableOutput("values"),
             h4("Results"),
-            tableOutput("results"))
+            tableOutput("results")),
+      tabPanel("ROC curves"),
+      tabPanel("AUC related statistics for complex genetic diseases"),
+      tabPanel("About")))
 ))
