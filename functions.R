@@ -9,7 +9,16 @@ final_results <-  function(k, lambda_s, h_2_l, est_auc) {
  T1 <- qnorm(1 - lambda_s * k)
  h_2_l <- 2 * (T0 - T1 * sqrt(1 - (T0^2 - T1^2) * (1 - T0 / i))) / (i + T1^2 * (i - T0)) # eq 1
 
-}
+ } else {
+   #h_2_l known
+   # h_2_l - eq1 = 0
+   to_optim <- function(x) {
+     h_2_l - 2 * (T0 - x * sqrt(1 - (T0^2 - x^2) * (1 - T0 / i))) / (i + x^2 * (i - T0))
+   }
+    # optimization
+   T1  <- uniroot(to_optim, c(-10,10), tol = 0.0001)$root
+   lambda_s <- (1 - pnorm(T1)) / k
+ }
  
  v  <- -i * (k / (1-k))
 
