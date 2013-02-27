@@ -1,6 +1,12 @@
 library(shiny)
 source("functions.R", local=TRUE)
 
+dis_table <- read.csv("Table.csv")
+dis_table$auc_m <- apply(dis_table[ ,-1], 1, function(x) round(final_results(x[1]/100, x[2], NA, NA)[1,2], 2))
+
+
+
+
 shinyServer(function(input, output) {
   
   inputValues <- reactive({
@@ -33,5 +39,9 @@ shinyServer(function(input, output) {
   
   output$roc <- renderPlot({
     resultsRoc()
+  })
+  
+  output$tab <- renderTable({
+    as.data.frame(rbind(dis_table, c("Your input", 100 * inputValues()$K, inputValues()$lambda_s, resultsValues()[1,2])))
   })
 })

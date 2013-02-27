@@ -36,6 +36,7 @@ shinyUI(pageWithSidebar(
             tableOutput("results")),
       tabPanel("ROC curves", 
             plotOutput("roc", width="50%")),
-      tabPanel("AUC related statistics for complex genetic diseases"),
+      tabPanel("AUC related statistics for complex genetic diseases",
+            tableOutput("tab")),
       tabPanel("About")))
 ))
