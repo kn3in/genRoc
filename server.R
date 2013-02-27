@@ -1,4 +1,5 @@
 library(shiny)
+library(ggplot2)
 source("functions.R", local=TRUE)
 
 dis_table <- read.csv("Table.csv")
