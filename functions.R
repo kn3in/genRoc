@@ -53,6 +53,4 @@ final_results <-  function(k, lambda_s, h_2_l, est_auc) {
               rho_ghat_g,
               lambda_s_x,
               risk_expl))
-  results$Value <- as.character(round(results$Value, 2))
-  results
 }
