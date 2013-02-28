@@ -1,5 +1,6 @@
 library(shiny)
 library(ggplot2)
+library(knitr)
 source("functions.R", local=TRUE)
 
 dis_table <- read.csv("Table.csv")
@@ -17,11 +18,17 @@ shinyServer(function(input, output) {
                 est_auc = ifelse(input$provide_auc, input$est_auc, NA))
   )
   
+    
+  output$limit_lambda <- renderUI({
+    xmin <- 0
+    xmax <- 1 / input$k
+    middle <- (xmax + xmin) / 2
+    sliderInput("lambda_s", "Sibling recurrence:", value=middle, min=xmin, max=xmax)
+  })
+  
   resultsValues <- reactive({
-    
     final_results(inputValues()$K, inputValues()$lambda_s, inputValues()$h_2_l, inputValues()$est_auc)
-    
-     })
+  })
   
   resultsRoc <- reactive({
     dt <- data.frame(hl_grid = seq(0.01, 1, by=0.01))
@@ -34,8 +41,6 @@ shinyServer(function(input, output) {
     my_dt$auc_m <- round(as.numeric(my_dt$auc_m), 2)
     my_dt
     })
-  
-  
   
   output$values <- renderTable(
     inputValues()
@@ -52,4 +57,5 @@ shinyServer(function(input, output) {
   output$tab <- renderTable(
     resultTab()
   )
+  
 })

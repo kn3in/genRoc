@@ -1,9 +1,10 @@
 library(shiny)
+library(knitr)
 
 shinyUI(pageWithSidebar(headerPanel("genRoc"),
   sidebarPanel(
-      wellPanel(sliderInput("k", "Disease Prevalence:", 
-                      min=0, max=1, value=0.05)),
+      wellPanel(numericInput("k", "Disease Prevalence:", 
+                      min=0, max=0.5, value=0.05)),
       
       
       wellPanel(radioButtons("my_method", "Choose one:",
@@ -17,7 +18,7 @@ shinyUI(pageWithSidebar(headerPanel("genRoc"),
       
       conditionalPanel(
         condition = 'input.my_method == "risk"',
-        numericInput("lambda_s", "Sibling recurrence:", 2, min=1))),
+        uiOutput("limit_lambda"))),
       
       wellPanel(
       h6("Optional:"),
@@ -43,3 +44,7 @@ shinyUI(pageWithSidebar(headerPanel("genRoc"),
       p("Wray NR, Yang J, Goddard ME, Visscher PM (2010)", a(href="http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1000864", "The Genetic Interpretation of Area under the ROC Curve in Genomic Profiling."), "PLoS Genet 6(2): e1000864."),
       p("Written by Konstantin Shakhbazov", a(href="https://github.com/kn3in/genRoc", "Source code at GitHub"))))))
 ))
+
+
+
+# $$AUC_{max}$$ $$h^2_{L_{[x]}}$$ $$\\rho_{\\hat{G}G}$$

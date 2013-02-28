@@ -17,7 +17,7 @@ final_results <-  function(k, lambda_s, h_2_l, est_auc) {
  v  <- -i * (k / (1-k))
 
  dn <- function(rho) {
-   (i-v) * h_2_l * rho / sqrt(h_2_l * rho * (1 - h_2_l * rho * i * (i - T0) + 1 - h_2_l * rho * v * (v - T0)))
+   (i - v) * h_2_l * rho / sqrt(h_2_l * rho * (1 - h_2_l * rho * i * (i - T0) + 1 - h_2_l * rho * v * (v - T0)))
  }
 
  auc <- function(rho) pnorm(dn(rho))
@@ -37,14 +37,15 @@ final_results <-  function(k, lambda_s, h_2_l, est_auc) {
  risk_expl <- (lambda_s_x - 1) / (lambda_s - 1)
 
  results <- data.frame(
-    Parameter = c("AUCmax",
+    Parameter = c("AUC_max",
                   "AUChalf",
                   "AUCquarter",
                   "AUCfh2parent",
                   "H^2_lx",
                   "Rho_gg",
                   "Lambda_sx",
-                  "Prop_risk_expl"),
+                  "Prop_risk_expl",
+                  "h_2_l"),
     Value = c(auc_max,
               auc.5,
               auc.25,
@@ -52,5 +53,6 @@ final_results <-  function(k, lambda_s, h_2_l, est_auc) {
               h_2_x,
               rho_ghat_g,
               lambda_s_x,
-              risk_expl))
+              risk_expl,
+              h_2_l))
 }
