@@ -69,7 +69,7 @@ lambda_sup <- function(k) {
     z  <- dnorm(T0)
     i  <- z / k
     T1 <- qnorm(1 - lambda_s * k)
-    2 * (T0 - T1 * sqrt(1 - (T0^2 - T1^2) * (1 - T0 / i))) / (i + T1^2 * (i - T0)) - 1
+    2 * (T0 - T1 * sqrt(1 - (T0^2 - T1^2) * (1 - T0 / i))) / (i + T1^2 * (i - T0)) - 1 # h_2_l - 1
   }
   
   xmin <- 1
@@ -78,6 +78,46 @@ lambda_sup <- function(k) {
   sup$root
 
 }
+
+
+# ROC plotting
+plotROC <- function(k) {
+  
+  dt <- data.frame(hl_grid = seq(0.01, 1, by=0.01))
+  dt$auc_m <- sapply(dt$hl_grid, function(x) final_results(k, NA, x, NA)[1,2])
+  
+  qplot(x = hl_grid, y = auc_m, data = dt, geom = "line") +
+  theme_bw() +
+  xlab(expression(h[L]^2)) +
+  ylab(expression(AUC[max])) +
+  ylim(c(0.5, 1)) +
+  xlim(c(0, 1))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
