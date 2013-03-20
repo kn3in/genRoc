@@ -94,9 +94,19 @@ plotROC <- function(k) {
   xlim(c(0, 1))
 }
 
+# Disease table from publication
 
-
-
+# getMeTable <- function(file_w_table = "Table.csv", k, ) {
+#   dis_table <- read.csv(file_w_table)
+#   dis_table$auc_m <- apply(dis_table[ ,-1], 1, function(x) final_results(x[1]/100, x[2], NA, NA)[1,2])
+# 
+#   my_dt <- as.data.frame(rbind(dis_table, c("Your input", 100 * inputValues()$K, inputValues()$lambda_s, resultsValues()[1,2])))
+#   my_dt$auc_m <- round(as.numeric(my_dt$auc_m), 2)
+#   my_dt
+# }
+# 
+# 
+# 
 
 
 
