@@ -45,7 +45,8 @@ final_results <-  function(k, lambda_s, h_2_l, est_auc) {
                   "Rho_gg",
                   "Lambda_sx",
                   "Prop_risk_expl",
-                  "h_2_l"),
+                  "h_2_l",
+                  "T1"),
     Value = c(auc_max,
               auc.5,
               auc.25,
@@ -54,5 +55,37 @@ final_results <-  function(k, lambda_s, h_2_l, est_auc) {
               rho_ghat_g,
               lambda_s_x,
               risk_expl,
-              h_2_l))
+              h_2_l,
+              T1))
 }
+
+# Estimate at which lambda_s h_2_l become > 1
+# use to restrict user input
+
+lambda_sup <- function(k) {
+  
+  hlsq_minus_1 <- function(lambda_s, k) {
+    T0 <- qnorm(1 - k)
+    z  <- dnorm(T0)
+    i  <- z / k
+    T1 <- qnorm(1 - lambda_s * k)
+    2 * (T0 - T1 * sqrt(1 - (T0^2 - T1^2) * (1 - T0 / i))) / (i + T1^2 * (i - T0)) - 1
+  }
+  
+  xmin <- 1
+  xmax <- 1 / (2 * k)
+  sup <- uniroot(hlsq_minus_1, c(xmin, xmax), tol = 0.0001, k = k)
+  sup$root
+
+}
+
+
+
+
+
+
+
+
+
+
+

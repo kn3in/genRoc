@@ -20,8 +20,8 @@ shinyServer(function(input, output) {
   
     
   output$limit_lambda <- renderUI({
-    xmin <- 1
-    xmax <- 1 / (2 * input$k)
+    xmin <- 1.01
+    xmax <- lambda_sup(input$k)
     middle <- (xmax + xmin) / 2
     sliderInput("lambda_s", "Sibling recurrence:", value=middle, min=xmin, max=xmax)
   })
