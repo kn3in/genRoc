@@ -30,8 +30,7 @@ shinyUI(pageWithSidebar(headerPanel("genRoc"),
         condition = "input.provide_auc == true",
         sliderInput("est_auc", "Estimated AUC:", 
                       min=0.5, max=1, value=0.75)),
-      helpText("AUC estimated by user from genetic risk score predicting case-control status. If not provided H^2_lx, Rho_gg, Lambda_sx and Prop_risk_exp are not calculated."),
-      HTML(knit2html(text="$$h^2_{L_{[x]}}$$")))),
+      HTML(knit2html(text="AUC estimated by user from genetic risk score predicting case-control status. If not provided $h^2_{L_{[x]}}$, $\\rho_{\\hat{G}G}$, $\\lambda_{s_{[x]}}$ and $\\frac{ \\lambda_{s_{[x]}} - 1 }{ \\lambda_{s} - 1 }$ are not calculated.")))),
 
   mainPanel(
     tabsetPanel(
@@ -52,4 +51,3 @@ shinyUI(pageWithSidebar(headerPanel("genRoc"),
 
 
 
-# $$AUC_{max}$$ $$h^2_{L_{[x]}}$$ $$\\rho_{\\hat{G}G}$$
