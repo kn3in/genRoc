@@ -44,7 +44,8 @@ final_results <-  function(k, lambda_s, h_2_l, est_auc) {
                   "H^2_lx",
                   "Rho_gg",
                   "Lambda_sx",
-                  "Prop_risk_expl"),
+                  "Prop_risk_expl",
+                  "h_2_l"),
     Value = c(auc_max,
               auc.5,
               auc.25,
@@ -52,7 +53,8 @@ final_results <-  function(k, lambda_s, h_2_l, est_auc) {
               h_2_x,
               rho_ghat_g,
               lambda_s_x,
-              risk_expl))
+              risk_expl,
+              h_2_l))
 }
 
 # Estimate at which lambda_s h_2_l become > 1
@@ -77,12 +79,15 @@ lambda_sup <- function(k) {
 
 
 # ROC plotting
-plotROC <- function(k) {
+plotROC <- function(k, h_2_l, auc_max) {
   
   dt <- data.frame(hl_grid = seq(0.01, 1, by=0.01))
   dt$auc_m <- sapply(dt$hl_grid, function(x) final_results(k, NA, x, NA)[1,2])
   
   qplot(x = hl_grid, y = auc_m, data = dt, geom = "line") +
+  geom_point(x = h_2_l, y = auc_max, color = "steelblue", size = 2) +
+  geom_linerange(aes(x = h_2_l, ymin = 0.5, ymax = auc_max), color = "darkred", linetype = "longdash", size = 0.1) +
+  geom_line(data = data.frame(x = c(0, h_2_l), y = c(auc_max, auc_max)), aes(x, y), color = "darkred", linetype = "longdash", size = 0.5) +
   theme_bw() +
   xlab(expression(h[L]^2)) +
   ylab(expression(AUC[max])) +

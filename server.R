@@ -17,7 +17,7 @@ shinyServer(function(input, output) {
   })
   
   resultsRoc <- reactive({
-    print(plotROC(inputValues()$K))
+    print(plotROC(inputValues()$K, resultsValues()[9,2], resultsValues()[1,2]))
   })
 
 #--------------------------------------------------------
