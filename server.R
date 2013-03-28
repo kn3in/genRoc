@@ -3,12 +3,6 @@ library(ggplot2)
 library(knitr)
 source("functions.R", local=TRUE)
 
-dis_table <- read.csv("Table.csv")
-dis_table$auc_m <- apply(dis_table[ ,-1], 1, function(x) final_results(x[1]/100, x[2], NA, NA)[1,2])
-
-
-
-
 shinyServer(function(input, output) {
   
   inputValues <- reactive(
@@ -24,14 +18,8 @@ shinyServer(function(input, output) {
   
   resultsRoc <- reactive({
     print(plotROC(inputValues()$K))
-    })
-  
-  resultTab <- reactive({
-    my_dt <- as.data.frame(rbind(dis_table, c("Your input", 100 * inputValues()$K, inputValues()$lambda_s, resultsValues()[1,2])))
-    my_dt$auc_m <- round(as.numeric(my_dt$auc_m), 2)
-    my_dt
-    })
-  
+  })
+
 #--------------------------------------------------------
 # Render output
 #--------------------------------------------------------
@@ -54,9 +42,5 @@ shinyServer(function(input, output) {
   output$roc <- renderPlot(
     resultsRoc()
   )
-  
-  output$tab <- renderTable(
-    resultTab()
-  )
-  
+
 })

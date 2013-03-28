@@ -5,7 +5,7 @@ shinyUI(pageWithSidebar(headerPanel("genRoc"),
   sidebarPanel(
       wellPanel(numericInput("k", "Disease Prevalence:", 
                       min=0, max=0.5, value=0.05),
-                helpText("Disease prevalence in population. The proportion of a birth cohort that will get disease in their lifetime.")),
+                HTML(knit2html(text = "Disease prevalence in population. The proportion of a birth cohort that will get disease in their lifetime."))),
       
       
       wellPanel(radioButtons("my_method", "Choose one:",
@@ -21,7 +21,7 @@ shinyUI(pageWithSidebar(headerPanel("genRoc"),
       conditionalPanel(
         condition = 'input.my_method == "risk"',
         uiOutput("limit_lambda"),
-        helpText("Increased risk of disease in siblings of affected relatives. We assume that this increased risk reflects only shared genetic risk."))),
+        HTML(knit2html(text = "Increased risk of disease in siblings of affected relatives. We assume that this increased risk reflects only shared genetic risk. Max risk constrained to have $h^2_L \\leq 1$. (as per equation 1 in the original publication.)")))),
       
       wellPanel(
       h4("Optional:"),
@@ -41,9 +41,7 @@ shinyUI(pageWithSidebar(headerPanel("genRoc"),
             wellPanel(tableOutput("results"))),
       tabPanel("ROC curves", 
             wellPanel(plotOutput("roc", width="50%"))),
-      tabPanel("AUC related statistics for complex genetic diseases",
-            wellPanel(tableOutput("tab"))),
-      tabPanel("About",
+      tabPanel("Citation",
       wellPanel(h4("genRoc:"),
       p("Wray NR, Yang J, Goddard ME, Visscher PM (2010)", a(href="http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1000864", "The Genetic Interpretation of Area under the ROC Curve in Genomic Profiling."), "PLoS Genet 6(2): e1000864."),
       p("Written by Konstantin Shakhbazov", a(href="https://github.com/kn3in/genRoc", "Source code at GitHub"))))))

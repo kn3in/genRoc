@@ -44,9 +44,7 @@ final_results <-  function(k, lambda_s, h_2_l, est_auc) {
                   "H^2_lx",
                   "Rho_gg",
                   "Lambda_sx",
-                  "Prop_risk_expl",
-                  "h_2_l",
-                  "T1"),
+                  "Prop_risk_expl"),
     Value = c(auc_max,
               auc.5,
               auc.25,
@@ -54,9 +52,7 @@ final_results <-  function(k, lambda_s, h_2_l, est_auc) {
               h_2_x,
               rho_ghat_g,
               lambda_s_x,
-              risk_expl,
-              h_2_l,
-              T1))
+              risk_expl))
 }
 
 # Estimate at which lambda_s h_2_l become > 1
@@ -94,19 +90,6 @@ plotROC <- function(k) {
   xlim(c(0, 1))
 }
 
-# Disease table from publication
-
-# getMeTable <- function(file_w_table = "Table.csv", k, ) {
-#   dis_table <- read.csv(file_w_table)
-#   dis_table$auc_m <- apply(dis_table[ ,-1], 1, function(x) final_results(x[1]/100, x[2], NA, NA)[1,2])
-# 
-#   my_dt <- as.data.frame(rbind(dis_table, c("Your input", 100 * inputValues()$K, inputValues()$lambda_s, resultsValues()[1,2])))
-#   my_dt$auc_m <- round(as.numeric(my_dt$auc_m), 2)
-#   my_dt
-# }
-# 
-# 
-# 
 
 
 
