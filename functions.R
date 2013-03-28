@@ -5,10 +5,8 @@ final_results <-  function(k, lambda_s, h_2_l, est_auc) {
  i  <- z / k
  
  if (is.na(h_2_l)) {
-
- T1 <- qnorm(1 - lambda_s * k)
- h_2_l <- 2 * (T0 - T1 * sqrt(1 - (T0^2 - T1^2) * (1 - T0 / i))) / (i + T1^2 * (i - T0)) # eq 1
-
+   T1 <- qnorm(1 - lambda_s * k)
+   h_2_l <- 2 * (T0 - T1 * sqrt(1 - (T0^2 - T1^2) * (1 - T0 / i))) / (i + T1^2 * (i - T0)) # eq 1
  } else {
    T1 <- (2 * T0 - i * h_2_l) / sqrt(4 - h_2_l^2 * i * (i - T0))
    lambda_s <- (1 - pnorm(T1)) / k
@@ -96,8 +94,12 @@ plotROC <- function(k, h_2_l, auc_max) {
 }
 
 
+# Annotate output
 
-
+annotateResults <- function(results_df) {
+  annotation <- read.table("parameters_info.txt", sep = "\t", header = TRUE)
+  merge(results_df, annotation, by.x = "Parameter", by.y = "param", all.x = TRUE)
+}
 
 
 

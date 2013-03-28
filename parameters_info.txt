@@ -1,1 +1,8 @@
-"$$\lambda_s$: Increased risk of disease in siblings of affected relatives. We assume that this increased risk reflects only shared genetic risk. Calculated from  K and h_l^2."
+param	nice	long
+AUC_max	"$AUC_{max}$"	"Maximum $AUC$ achievable for a genetic predictor, when the predictor accounts for all known genetic variance. Equation 3."
+AUCfh2parent	"$AUC_{FH:2parent}$"	"$AUC$ achievable best on known family history with respect to disease status of both parents. Equation S1."
+AUChalf	"$AUC_{half}$"	"$AUC$ achievable for a genetic predictor when the predictor accounts for half the known genetic variance. Equation 3 $h^2$ replaced by $0.5*h^2$."
+AUCquarter	"$AUC_{quarter}$"	"$AUC$ achievable for a genetic predictor when the predictor accounts for a quarter of the known genetic variance. Equation 3 $h^2$ replaced by $0.25*h^2$."
+
+
+

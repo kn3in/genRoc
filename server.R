@@ -36,7 +36,7 @@ shinyServer(function(input, output) {
   )
   
   output$results <- renderTable(
-    resultsValues()
+    annotateResults(resultsValues()[1:8, ])
   )
   
   output$roc <- renderPlot(
