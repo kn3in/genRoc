@@ -1,6 +1,7 @@
 library(shiny)
 library(ggplot2)
 library(knitr)
+library(xtable)
 source("functions.R", local=TRUE)
 
 shinyServer(function(input, output) {
@@ -35,8 +36,9 @@ shinyServer(function(input, output) {
     inputValues()
   )
   
-  output$results <- renderTable(
-    annotateResults(resultsValues()[1:8, ])
+  output$results <- renderText(
+    paste(print(xtable(annotateResults(resultsValues()[1:8, ])), include.rownames = FALSE, type = "html", html.table.attributes = c("class=table-condensed"), print.results = FALSE),
+    tags$script("MathJax.Hub.Queue([\"Typeset\",MathJax.Hub]);"))
   )
   
   output$roc <- renderPlot(

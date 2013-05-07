@@ -1,7 +1,8 @@
 library(shiny)
 library(knitr)
+source("custom_html.R")
 
-shinyUI(pageWithSidebar(headerPanel("genRoc"),
+shinyUI(pageWithSidebar(customHeaderPanel("genRoc"),
   sidebarPanel(
       wellPanel(numericInput("k", "Disease Prevalence:", 
                       min=0, max=0.5, value=0.05),
@@ -38,7 +39,7 @@ shinyUI(pageWithSidebar(headerPanel("genRoc"),
             h4("Input"),
             wellPanel(tableOutput("values")),
             h4("Results"),
-            wellPanel(tableOutput("results"))),
+            wellPanel(htmlOutput("results"))),
       tabPanel("ROC curves", 
             wellPanel(plotOutput("roc", width="50%"))),
       tabPanel("Citation",
