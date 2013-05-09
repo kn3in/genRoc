@@ -37,7 +37,7 @@ shinyServer(function(input, output) {
   )
   
   output$results <- renderText(
-    paste(print(xtable(annotateResults(resultsValues()[1:8, ])), include.rownames = FALSE, type = "html", html.table.attributes = c("class=table-condensed"), print.results = FALSE),
+    paste(print(xtable(annotateResults(resultsValues()[1:8, ])[ c("nice", "Value", "long")]), include.rownames = FALSE, include.colnames = FALSE, type = "html", html.table.attributes = c("class=table-condensed"), print.results = FALSE),
     tags$script("MathJax.Hub.Queue([\"Typeset\",MathJax.Hub]);"))
   )
   
