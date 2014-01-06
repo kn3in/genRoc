@@ -43,10 +43,11 @@ shinyUI(pageWithSidebar(customHeaderPanel("genRoc"),
       tabPanel("ROC curves", 
             wellPanel(plotOutput("roc", width="50%"))),
       tabPanel("Citation",
-      wellPanel(h4("genRoc:"),
-      p("Wray NR, Yang J, Goddard ME, Visscher PM (2010)", a(href="http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1000864", "The Genetic Interpretation of Area under the ROC Curve in Genomic Profiling."), "PLoS Genet 6(2): e1000864."),
-      p("Written by Konstantin Shakhbazov", a(href="https://github.com/kn3in/genRoc", "Source code at GitHub"))))))
-))
+      wellPanel(
+      p("Wray NR, Yang J, Goddard ME, Visscher PM", a(href="http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1000864", "The Genetic Interpretation of Area under the ROC Curve in Genomic Profiling."), "PLoS Genet 2010")),
+      wellPanel(
+          HTML('<a href="https://github.com/kn3in/genRoc"><img src="img/GitHub-Mark-120px-plus.png" width=50 /> </a>'))
+)))))
 
 
 
