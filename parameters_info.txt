@@ -1,8 +1,9 @@
 param	nice	long
 AUC_max	\(AUC_{max}\)	Maximum \(AUC\) achievable for a genetic predictor, when the predictor accounts for all known genetic variance. Equation 3.
 AUCfh2parent	\(AUC_{FH:2parent}\)	\(AUC\) achievable best on known family history with respect to disease status of both parents. Equation S1.
-AUChalf	\(AUC_{half}\)	\(AUC\) achievable for a genetic predictor when the predictor accounts for half the known genetic variance. Equation 3 \(h^2\) replaced by \(0.5*h^2\).
-AUCquarter	\(AUC_{quarter}\)	\(AUC\) achievable for a genetic predictor when the predictor accounts for a quarter of the known genetic variance. Equation 3 \(h^2\) replaced by \(0.25*h^2\).
-
-
-
+AUChalf	\(AUC_{half}\)	\(AUC\) achievable for a genetic predictor when the predictor accounts for half the known genetic variance. Equation 3, \(h^2\) replaced by \(0.5*h^2\).
+AUCquarter	\(AUC_{quarter}\)	\(AUC\) achievable for a genetic predictor when the predictor accounts for a quarter of the known genetic variance. Equation 3, \(h^2\) replaced by \(0.25*h^2\).
+Lambda_sx	\(\lambda_{s_{[x]}}\)	Increased risk of disease in siblings attributable to the predictor given the estimated \(AUC\), near Equation 6.
+H^2_lx	\(h^2_{L_{[x]}}\)	The proportion of variance in liability explained by the predictor given the estimated \(AUC\). Equation 4.
+Rho_gg	\(\rho_{\hat{G}G}\)	The correlation between true and estimated genetic liability given the estimated \(AUC\). Equation 5.
+Prop_risk_expl	\(\frac{ \lambda_{s_{[x]}} - 1 }{ \lambda_{s} - 1 }\)	\(\frac{h^2_{L_[{x}]}}{h^2} = \rho^2_{\hat{G}G}\)
