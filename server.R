@@ -33,11 +33,11 @@ shinyServer(function(input, output) {
   })
   
   output$values <- renderTable(
-    inputValues()
+    as.data.frame(cbind(t(inputValues()), c("Disease Prevalence", "Sibling recurrence (risk)", "Heritability of liability", "AUC estimated by user from genetic risk score predicting case-control status"))), include.rownames = FALSE, include.colnames = FALSE
   )
   
   output$results <- renderText(
-    paste(print(xtable(annotateResults(resultsValues()[1:8, ])[ c("Parameter", "nice", "Value", "long")]), include.rownames = FALSE, include.colnames = FALSE, type = "html", html.table.attributes = c("class=table-condensed"), print.results = FALSE),
+    paste(print(xtable(annotateResults(resultsValues()[1:8, ])[ c("nice", "Value", "long")]), include.rownames = FALSE, include.colnames = FALSE, type = "html", html.table.attributes = c("class=table-condensed"), print.results = FALSE),
     tags$script("MathJax.Hub.Queue([\"Typeset\",MathJax.Hub]);"))
   )
   
