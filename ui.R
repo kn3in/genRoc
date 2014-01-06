@@ -44,7 +44,7 @@ shinyUI(pageWithSidebar(customHeaderPanel("genRoc"),
             wellPanel(tableOutput("values")),
             h3("Result"),
             wellPanel(htmlOutput("results"))),
-      tabPanel("ROC curves", 
+      tabPanel("ROC", 
             wellPanel(plotOutput("roc", width="50%"))),
       tabPanel("Citation",
       wellPanel(
