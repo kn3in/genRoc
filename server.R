@@ -35,10 +35,8 @@ shinyServer(function(input, output) {
   
    
   your_input <- reactive({
-    mydf <- as.data.frame(cbind(t(inputValues()), c("Disease Prevalence", "Sibling recurrence (risk)", "Heritability of liability", "AUC estimated by user from genetic risk score predicting case-control status")))
-    mydf$V1 <- as.numeric(mydf$V1)
-    mydf
-    })
+    annotate_input(inputValues())
+  })
 
   output$values <- renderTable(
     your_input(), digits = 2, include.rownames = FALSE, include.colnames = FALSE

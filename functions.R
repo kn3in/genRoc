@@ -103,8 +103,11 @@ annotateResults <- function(results_df) {
   annotation <- annotation[ ,c("nice", "Value", "long")]
 }
 
-
-
+annotate_input <- function(input_values) {
+    mydf <- as.data.frame(cbind(t(input_values), c("Disease Prevalence", "Sibling recurrence (risk)", "Heritability of liability", "AUC estimated by user from genetic risk score predicting case-control status")))
+    mydf$V1 <- as.numeric(mydf$V1)
+    mydf
+}
 
 
 
