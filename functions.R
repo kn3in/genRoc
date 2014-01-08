@@ -68,9 +68,15 @@ lambda_sup <- function(k) {
     2 * (T0 - T1 * sqrt(1 - (T0^2 - T1^2) * (1 - T0 / i))) / (i + T1^2 * (i - T0)) - 1 # h_2_l - 1
   }
   
+  tolerance <- 0.0001
   xmin <- 1
-  xmax <- 1 / (2 * k)
-  sup <- uniroot(hlsq_minus_1, c(xmin, xmax), tol = 0.0001, k = k)
+  # xmax exactly 1 over k, leads to numeric instability infinity/infinity due to 
+  # qnorm(1 - lambda_s * k) = Inf, see definition of hlsq_minus_1 above or h_2_l
+  # via equation 1. However, when k is fixed h_2_l - 1 is a monotonically increasing function of lambda_s.
+  # i.e. root exists and unique (given signs of the function differ on the ends of a search interval)
+  # Hence we can move upper bound by the tolerance level.
+  xmax <- 1 / k - tolerance
+  sup <- uniroot(hlsq_minus_1, c(xmin, xmax), tol = tolerance, k = k)
   sup$root
 
 }
