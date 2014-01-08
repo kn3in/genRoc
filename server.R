@@ -3,7 +3,6 @@ library(ggplot2)
 library(knitr)
 library(xtable)
 source("functions.R", local=TRUE)
-options(stringsAsFactors = FALSE)
 
 shinyServer(function(input, output) {
   
