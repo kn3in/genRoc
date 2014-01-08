@@ -35,8 +35,8 @@ shinyServer(function(input, output) {
    
   your_input <- reactive({
     mydf <- as.data.frame(cbind(t(inputValues()), c("Disease Prevalence", "Sibling recurrence (risk)", "Heritability of liability", "AUC estimated by user from genetic risk score predicting case-control status")))
-    mydf$V1 <- as.numeric(mydf$V1)
-    mydf
+    # mydf$V1 <- as.numeric(mydf$V1)
+    # mydf
     })
 
   output$values <- renderTable(
@@ -44,7 +44,7 @@ shinyServer(function(input, output) {
   )
   
   output$results <- renderText(
-    paste(print(xtable(annotateResults(resultsValues()[1:8, ])[ c("nice", "Value", "long")]), include.rownames = FALSE, include.colnames = FALSE, type = "html", html.table.attributes = c("class=table-condensed"), print.results = FALSE),
+    paste(print(xtable(annotateResults(resultsValues())), include.rownames = FALSE, include.colnames = FALSE, type = "html", html.table.attributes = c("class=table-condensed"), print.results = FALSE),
     tags$script("MathJax.Hub.Queue([\"Typeset\",MathJax.Hub]);"))
   )
   

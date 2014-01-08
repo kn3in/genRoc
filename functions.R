@@ -98,8 +98,12 @@ plotROC <- function(k, h_2_l, auc_max) {
 
 annotateResults <- function(results_df) {
   annotation <- read.table("parameters_info.txt", sep = "\t", header = TRUE)
-  merge(results_df, annotation, by.x = "Parameter", by.y = "param", all.x = TRUE)
+  annotation <- merge(results_df, annotation, by.x = "Parameter", by.y = "param", all.x = TRUE)
+  annotation <- annotation[match(c("AUC_max","AUCfh2parent", "AUChalf", "AUCquarter", "Lambda_sx", "H^2_lx", "Rho_gg", "Prop_risk_expl"), annotation$Parameter), ]
+  annotation <- annotation[ ,c("nice", "Value", "long")]
 }
+
+
 
 
 
