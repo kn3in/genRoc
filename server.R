@@ -3,6 +3,7 @@ library(ggplot2)
 library(knitr)
 library(xtable)
 source("functions.R", local=TRUE)
+options(stringsAsFactors = FALSE)
 
 shinyServer(function(input, output) {
   
@@ -35,8 +36,8 @@ shinyServer(function(input, output) {
    
   your_input <- reactive({
     mydf <- as.data.frame(cbind(t(inputValues()), c("Disease Prevalence", "Sibling recurrence (risk)", "Heritability of liability", "AUC estimated by user from genetic risk score predicting case-control status")))
-    # mydf$V1 <- as.numeric(mydf$V1)
-    # mydf
+    mydf$V1 <- as.numeric(mydf$V1)
+    mydf
     })
 
   output$values <- renderTable(
