@@ -1,5 +1,6 @@
 library(shiny)
 library(knitr)
+library(markdown)
 source("custom_html.R")
 
 shinyUI(pageWithSidebar(customHeaderPanel("genRoc"),
